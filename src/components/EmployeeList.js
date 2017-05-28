@@ -2,7 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
+import firebase from 'firebase';
+import {Actions} from 'react-native-router-flux';
 import { employeesFetch } from '../actions';
+import {Card, CardSection, Button, Spinner} from './common';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
@@ -20,6 +23,12 @@ class EmployeeList extends Component {
     this.createDataSource(nextProps);
   }
 
+   logoutButtonPress() {
+    firebase.auth().signOut()
+      .then( Actions.auth({ type: 'reset' }))
+
+  }
+
   createDataSource({ employees }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -34,11 +43,20 @@ class EmployeeList extends Component {
 
   render() {
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <Card>
+        <CardSection>
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+          />
+        </CardSection>
+        <CardSection>
+          <Button onPress={ this.logoutButtonPress.bind(this)} >
+            Log Out
+          </Button> 
+        </CardSection>  
+      </Card>
     );
   }
 }

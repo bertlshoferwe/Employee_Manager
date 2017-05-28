@@ -6,7 +6,10 @@ import {
   LOGIN_USER,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAIL,
-  REGISTER_USER
+  REGISTER_USER,
+  LOGOUT_USER,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAIL
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,7 +17,8 @@ const INITIAL_STATE = {
   password: '',
   user: null,
   error: '',
-  loading: false
+  loading: false,
+  toast: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -9,15 +9,15 @@ class ListItem extends Component {
   }
 
   render() {
-    const { name } = this.props.employee;
+    const { name, shift } = this.props.employee;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
-          <CardSection>
+          <CardSection style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <Text style={styles.titleStyle}>
               {name}
-            </Text>
+            </Text> 
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
@@ -28,7 +28,8 @@ class ListItem extends Component {
 const styles = {
   titleStyle: {
     fontSize: 18,
-    paddingLeft: 15
+    paddingLeft: 15,
+    justifyContent: 'flex-start'
   }
 };
 
